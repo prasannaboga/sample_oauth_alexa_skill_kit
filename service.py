@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+
 from __future__ import print_function
+import requests
 
 
 def handler(event, context):
-  print("event.session.application.applicationId=" +
-        event['session']['application']['applicationId'])
+  print("event.session.application.applicationId=" + event['session']['application']['applicationId'])
   
   if event['session']['new']:
     on_session_started({'requestId': event['request']['requestId']},
@@ -73,8 +74,19 @@ def get_user_info(intent, session):
   card_title = intent['name']
   should_end_session = False
   reprompt_text = None
-  
-  speech_output = "I m going to get your details.. next time..."
+
+  access_token = session['user']['accessToken']
+  base_url = 'https://glacial-retreat-51710.herokuapp.com'
+  headers = {'Authorization': 'Bearer {}'.format(access_token), 'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+  profile_url = '{0}/api/profile'.format(base_url)
+  request = requests.get(profile_url, params={}, headers=headers)
+  profile = request.json()
+  print(profile)
+  if 'errors' in profile:
+    speech_output = "I m going to get your details.. next time..."
+  else:
+    speech_output = "Name {}, Date of Birth {}, Location {}".format(profile['first_name'] + ' ' + profile['last_name'], profile['dob'], profile['location'])
   
   return build_response(session_attributes,
                         build_speechlet_response(card_title, speech_output, reprompt_text, should_end_session))
