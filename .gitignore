@@ -1,0 +1,7 @@
+/dist
+/config.yaml
+/**/*.pyc
+/venv
+/tmp
+/*.log
+/.idea
