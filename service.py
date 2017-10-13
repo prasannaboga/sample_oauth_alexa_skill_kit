@@ -1,11 +1,18 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function
-import requests
+import logging
+from lib.skill_control_behavior import *
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 
 def handler(event, context):
-  print("event.session.application.applicationId=" + event['session']['application']['applicationId'])
+  print("event.session")
+  print(event['session'])
+  print("event.request")
+  print(event['request'])
   
   if event['session']['new']:
     on_session_started({'requestId': event['request']['requestId']},
@@ -43,6 +50,8 @@ def on_intent(intent_request, session):
     return get_user_info(intent, session)
   elif intent_name == "GetUserInfo":
     return get_user_info(intent, session)
+  elif intent_name == "UpdateUserInfo":
+    return update_user_info(intent, session)
   elif intent_name == "AMAZON.HelpIntent":
     return get_welcome_response()
   elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
@@ -55,78 +64,3 @@ def on_session_ended(session_ended_request, session):
   """ Called when the user ends the session. Is not called when the skill returns should_end_session=true """
   print("on_session_ended requestId=" + session_ended_request['requestId'] + ", sessionId=" + session['sessionId'])
   # add cleanup logic here
-
-
-# --------------- Functions that control the skill's behavior ------------------ #
-
-def get_welcome_response():
-  session_attributes = {}
-  card_title = "Hello"
-  speech_output = "Welcome to the Oauth example... Ask me."
-  reprompt_text = "Oauth example is here I have only one skill"
-  should_end_session = False
-  return build_response(session_attributes,
-                        build_speechlet_response(card_title, speech_output, reprompt_text, should_end_session))
-
-
-def get_user_info(intent, session):
-  session_attributes = {}
-  card_title = intent['name']
-  should_end_session = False
-  reprompt_text = None
-
-  access_token = session['user']['accessToken']
-  base_url = 'https://glacial-retreat-51710.herokuapp.com'
-  headers = {'Authorization': 'Bearer {}'.format(access_token), 'Content-Type': 'application/json', 'Accept': 'application/json'}
-
-  profile_url = '{0}/api/profile'.format(base_url)
-  request = requests.get(profile_url, params={}, headers=headers)
-  profile = request.json()
-  print(profile)
-  if 'errors' in profile:
-    speech_output = "I m going to get your details.. next time..."
-  else:
-    speech_output = "Name {}, Date of Birth {}, Location {}".format(profile['first_name'] + ' ' + profile['last_name'], profile['dob'], profile['location'])
-  
-  return build_response(session_attributes,
-                        build_speechlet_response(card_title, speech_output, reprompt_text, should_end_session))
-
-
-def handle_session_end_request():
-  card_title = "Quiting"
-  speech_output = "See you again"
-  # Setting this to true ends the session and exits the skill.
-  should_end_session = True
-  return build_response({}, build_speechlet_response(
-    card_title, speech_output, None, should_end_session))
-
-
-# --------------- Helpers that build all of the responses ---------------------- #
-
-def build_speechlet_response(title, output, reprompt_text, should_end_session):
-  return {
-    'outputSpeech': {
-      'type': 'PlainText',
-      'text': output
-    },
-    'card': {
-      'type': 'Simple',
-      'title': 'SessionSpeechlet - ' + title,
-      'content': 'SessionSpeechlet - ' + output
-    },
-    'reprompt': {
-      'outputSpeech': {
-        'type': 'PlainText',
-        'text': reprompt_text
-      }
-    },
-    'shouldEndSession': should_end_session
-  }
-
-
-def build_response(session_attributes, speechlet_response):
-  return {
-    'version': '1.0',
-    'sessionAttributes': session_attributes,
-    'response': speechlet_response
-  }
