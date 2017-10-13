@@ -3,8 +3,8 @@ import requests
 class SampleOauth:
   
   def __init__(self, access_token):
-    #self.base_url = 'https://glacial-retreat-51710.herokuapp.com'
-    self.base_url = 'http://192.168.6.24:5000'
+    self.base_url = 'https://glacial-retreat-51710.herokuapp.com'
+    #self.base_url = 'http://192.168.6.24:5000'
     self.headers = {'Authorization': 'Bearer {}'.format(access_token), 'Content-Type': 'application/json',
                'Accept': 'application/json'}
     
