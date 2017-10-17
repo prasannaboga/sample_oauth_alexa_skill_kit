@@ -9,9 +9,9 @@ logger.setLevel(logging.INFO)
 
 
 def handler(event, context):
-  print("event.session")
+  print(" ==== event.session ==== ")
   print(event['session'])
-  print("event.request")
+  print(" ==== event.request ==== ")
   print(event['request'])
   
   if event['session']['new']:
