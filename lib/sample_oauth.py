@@ -7,6 +7,7 @@ class SampleOauth:
     #self.base_url = 'http://192.168.6.24:5000'
     self.headers = {'Authorization': 'Bearer {}'.format(access_token), 'Content-Type': 'application/json',
                'Accept': 'application/json'}
+    print(" ==== base_url ====> " + self.base_url)
     
   def get_user_info(self):
     profile_url = '{0}/api/profile'.format(self.base_url)

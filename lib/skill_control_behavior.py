@@ -51,10 +51,10 @@ def update_user_info(intent, session):
   card_response = {'type': 'Simple', 'title': intent['name']}
   
   sample_oauth = SampleOauth(session['user']['accessToken'])
-  response = sample_oauth.update_user_info()
+  response = sample_oauth.update_user_info().json()
   if 'errors' in response:
-    speech_output = 'Error'
-    reprompt_text = '{}. Ask again to update.'.format(response['errors'].join(', '))
+    speech_output = 'Error {}'.format(', '.join(response['errors']))
+    reprompt_text = '{}. Ask again to update.'.format(', '.join(response['errors']))
   else:
     speech_output = "Updated user details successfully"
 
