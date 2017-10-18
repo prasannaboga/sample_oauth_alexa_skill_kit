@@ -27,7 +27,7 @@ def get_user_info(intent, session):
   text_response = {'title': intent['name']}
   card_response = {'type': 'Simple', 'title': intent['name']}
   
-  sample_oauth = SampleOauth(session['user']['accessToken'])
+  sample_oauth = SampleOauth(session['user'].get('accessToken'))
   response = sample_oauth.get_user_info()
   profile = response.json()
   
@@ -66,7 +66,7 @@ def update_user_info(intent, session):
   text_response = {'title': intent['name']}
   card_response = {'type': 'Simple', 'title': intent['name']}
   
-  sample_oauth = SampleOauth(session['user']['accessToken'])
+  sample_oauth = SampleOauth(session['user'].get('accessToken'))
   response = sample_oauth.update_user_info().json()
   if 'errors' in response:
     speech_output = 'Error {}'.format(', '.join(response['errors']))
