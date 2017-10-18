@@ -39,6 +39,22 @@ def get_user_info(intent, session):
     
   text_response['content'] = card_response['content'] = speech_output
   
+  if 'slots' in intent:
+    if 'value' in intent['slots']['display']:
+      if intent['slots']['display']['value'].lower() == 'standard':
+        card_response['type'] = 'Standard'
+        card_response['images'] = {
+          'smallImageUrl': "https://cdn.tutsplus.com/net/uploads/2013/07/oauth-retina-preview.jpg",
+          'largeImageUrl': "https://cdn.tutsplus.com/net/uploads/2013/07/oauth-retina-preview.jpg"
+        }
+        if 'small_avatar' in profile:
+          card_response['images'] = {
+            'smallImageUrl': profile['small_avatar'],
+            'largeImageUrl': profile['large_avatar']
+          }
+      elif intent['slots']['display']['value'].lower() == 'linkaccount':
+        card_response = {'type': "LinkAccount"}
+  
   return build_response(session_attributes,
                         build_speechlet_response(text_response, card_response, reprompt_text, should_end_session))
 
