@@ -2,6 +2,7 @@
 
 from __future__ import print_function
 import logging
+import json
 from lib.skill_control_behavior import *
 
 logger = logging.getLogger()
@@ -10,9 +11,9 @@ logger.setLevel(logging.INFO)
 
 def handler(event, context):
   print(" ==== event.session ==== ")
-  print(event['session'])
+  print(json.dumps(event['session']))
   print(" ==== event.request ==== ")
-  print(event['request'])
+  print(json.dumps(event['request']))
   
   if event['session']['new']:
     on_session_started({'requestId': event['request']['requestId']},
