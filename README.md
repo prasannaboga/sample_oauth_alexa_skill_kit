@@ -6,7 +6,7 @@
     source ./venv/bin/activate
     pip install -r requirements.txt
 
-#### Test installation by making sure the following commands are relative to the `./venv` directory created above:
+#### Check installation successfully by running following commands are relative to the virtualenv:
     which python
     which pip
 
@@ -25,16 +25,17 @@
     python -m unittest tests.test_utils.TestUtils.test_flatten
 
 ### lambda Execution & Deploy
-    Copy config.sample.yaml file to cofig.yaml
+Copy config.sample.yaml file to cofig.yaml
+
 ```commandline
-    $ cp config.sample.yaml cofig.yaml 
+$ cp config.sample.yaml cofig.yaml 
 ```
     Execute lambda function    
 ```commandline
-    $ lambda invoke -v
+$ lambda invoke -v
 ```
     Deploy lambda function
 ```commandline
-    $ lambda deploy
+$ lambda deploy
 ```
     
