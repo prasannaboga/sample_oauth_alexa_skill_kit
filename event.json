@@ -1,25 +1,25 @@
 {
   "session": {
     "new": true,
-    "sessionId": "SessionId.c6068ca1-d3c5-460f-be63-dfd2ff9c20ef",
+    "sessionId": "SessionId.e300d3e0-8c86-41a9-9a23-8526c22c8095",
     "application": {
-      "applicationId": "amzn1.ask.skill.a243d944-3e6f-4259-b510-f99060816ab6"
+      "applicationId": "amzn1.ask.skill.142e63e9-96d8-4374-83ee-0ab60de2c2ee"
     },
     "attributes": {},
     "user": {
-      "userId": "amzn1.ask.account.AGXKZGAL3XRCO7YAUJXALHZ25S4I6PR2K6YYOVKZPNTK54KPJRZZMQHGWQKK2FGXR5KYY47F7EBL3HKCJUY64UULJIHOFPHZLVUTZ32KMEEBWBJLBOLBLQYGNMGUYVAAVLTP4IHZAYAGRI4XG27DWFIWFSIUHGRZLZHDOX3L4M5L7YLPJQOCIMGDXGKMM24ZFBDSS7NGIVV645Q",
-      "accessToken": "2e4177fec4407857ea9dec4fa1eb286629d5dc5e6aad392638003cdd42656dbd"
+      "userId": "amzn1.ask.account.AHSMBTUMOSZANY4PYDIE6LDVG7IRNW7BXEJXQN3MS3UF67XMRSOEKZJV2AY5NLWWDLQF5XDL5LEXALL64YQUHV2I2PZU4GDHPQPH6LXZLF6LYASRO5HVF442JB63GNHKXISDXHRSRWRN3E6IQZVPRVTWJK7PBVMWWXAZ34ZVOE3YJVIHFG5VXS3BNS5CSWQ6QEZ2CLSZZEWAB7Y",
+      "accessToken": "c61cf5bb87c38b6a8eb5b912128acc3a09e3648118044b1a220105071bd5a19b"
     }
   },
   "request": {
     "type": "IntentRequest",
-    "requestId": "EdwRequestId.041a288b-17d9-4309-ade6-480980a8184f",
+    "requestId": "EdwRequestId.bf75e645-cdbf-41a1-a662-893ee0169a48",
     "intent": {
-      "name": "GetUserInfo",
+      "name": "RenderTemplate",
       "slots": {}
     },
     "locale": "en-US",
-    "timestamp": "2017-10-12T10:34:48Z"
+    "timestamp": "2017-10-18T11:15:19Z"
   },
   "context": {
     "AudioPlayer": {
@@ -27,10 +27,11 @@
     },
     "System": {
       "application": {
-        "applicationId": "amzn1.ask.skill.a243d944-3e6f-4259-b510-f99060816ab6"
+        "applicationId": "amzn1.ask.skill.142e63e9-96d8-4374-83ee-0ab60de2c2ee"
       },
       "user": {
-        "userId": "amzn1.ask.account.AGXKZGAL3XRCO7YAUJXALHZ25S4I6PR2K6YYOVKZPNTK54KPJRZZMQHGWQKK2FGXR5KYY47F7EBL3HKCJUY64UULJIHOFPHZLVUTZ32KMEEBWBJLBOLBLQYGNMGUYVAAVLTP4IHZAYAGRI4XG27DWFIWFSIUHGRZLZHDOX3L4M5L7YLPJQOCIMGDXGKMM24ZFBDSS7NGIVV645Q"
+        "userId": "amzn1.ask.account.AHSMBTUMOSZANY4PYDIE6LDVG7IRNW7BXEJXQN3MS3UF67XMRSOEKZJV2AY5NLWWDLQF5XDL5LEXALL64YQUHV2I2PZU4GDHPQPH6LXZLF6LYASRO5HVF442JB63GNHKXISDXHRSRWRN3E6IQZVPRVTWJK7PBVMWWXAZ34ZVOE3YJVIHFG5VXS3BNS5CSWQ6QEZ2CLSZZEWAB7Y",
+        "accessToken": "c61cf5bb87c38b6a8eb5b912128acc3a09e3648118044b1a220105071bd5a19b"
       },
       "device": {
         "supportedInterfaces": {

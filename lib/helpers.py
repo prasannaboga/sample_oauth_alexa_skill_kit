@@ -1,5 +1,5 @@
 # --------------- Helpers that build all of the responses ---------------------- #
-def build_speechlet_response(text_response, card_response, reprompt_text, should_end_session):
+def build_speechlet_response(text_response, card_response, reprompt_text, should_end_session, directives = []):
   
   response = {
     'outputSpeech': {
@@ -13,7 +13,8 @@ def build_speechlet_response(text_response, card_response, reprompt_text, should
         'text': reprompt_text
       }
     },
-    'shouldEndSession': should_end_session
+    'shouldEndSession': should_end_session,
+    'directives': directives
   }
 
   return response

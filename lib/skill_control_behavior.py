@@ -9,7 +9,7 @@ def get_welcome_response():
   reprompt_text = "Oauth example is here I have only two skill"
   should_end_session = False
   text_response = card_response = {}
-  text_response['title'] = card_response['title'] = "Hello..."
+  text_response['title'] = card_response['title'] = "Welcome to the Oauth example..."
   text_response['content'] = card_response['content'] = "Welcome to the Oauth example... Ask me..."
   card_response['type'] = "Standard"
   card_response['image'] = {
@@ -35,25 +35,23 @@ def get_user_info(intent, session):
     speech_output = "I m going to get your details.. next time..."
   else:
     speech_output = "Name {}\n Date of Birth {}\n Location {}".format(profile['name'], profile['dob'],
-                                                                    profile['location'])
-    
-  text_response['content'] = card_response['content'] = speech_output
+                                                                      profile['location'])
+  
+  text_response['content'] = speech_output
   
   if 'slots' in intent:
     if 'value' in intent['slots']['display']:
       if intent['slots']['display']['value'].lower() == 'standard':
+        card_response['text'] = speech_output
         card_response['type'] = 'Standard'
-        card_response['images'] = {
-          'smallImageUrl': "https://cdn.tutsplus.com/net/uploads/2013/07/oauth-retina-preview.jpg",
-          'largeImageUrl': "https://cdn.tutsplus.com/net/uploads/2013/07/oauth-retina-preview.jpg"
+        card_response['image'] = {
+          'smallImageUrl': profile['small_avatar'],
+          'largeImageUrl': profile['large_avatar']
         }
-        if 'small_avatar' in profile:
-          card_response['images'] = {
-            'smallImageUrl': profile['small_avatar'],
-            'largeImageUrl': profile['large_avatar']
-          }
-      elif intent['slots']['display']['value'].lower() == 'linkaccount':
+      elif intent['slots']['display']['value'].lower() == 'link account':
         card_response = {'type': "LinkAccount"}
+    else:
+      card_response['content'] = speech_output
   
   return build_response(session_attributes,
                         build_speechlet_response(text_response, card_response, reprompt_text, should_end_session))

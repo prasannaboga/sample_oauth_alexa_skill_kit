@@ -22,7 +22,10 @@ def handler(event, context):
   if event['request']['type'] == "LaunchRequest":
     return on_launch(event['request'], event['session'])
   elif event['request']['type'] == "IntentRequest":
-    return on_intent(event['request'], event['session'])
+    on_intent_response = on_intent(event['request'], event['session'])
+    print(" == on_intent_response == ")
+    print(json.dumps(on_intent_response))
+    return on_intent_response
   elif event['request']['type'] == "SessionEndedRequest":
     return on_session_ended(event['request'], event['session'])
 
