@@ -4,7 +4,7 @@ Install [pip](http://pip.readthedocs.org/en/stable/installing/). Then:
 ```commandline
 pip install virtualenv
 virtualenv venv
-source ./venv/bin/activate
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
